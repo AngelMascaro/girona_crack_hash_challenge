@@ -7,6 +7,8 @@ parser.add_argument('-i2', '--inputFile2', type=str, help='Param inputFile2')
 args = parser.parse_args()
 filename1 = args.inputFile1
 filename2 = args.inputFile2
+WINDOWS_LINE_ENDING = '\r'
+UNIX_LINE_ENDING = '\n'
 
 def merge(filename1, filename2):
     with open(filename1, 'r') as f1:
@@ -20,7 +22,7 @@ def merge(filename1, filename2):
             lines = list(set(lines1 + lines2))
             with open('newFile.txt', 'w') as f:
                 for line in lines:
-                    f.writelines(line + "\r")
-            
+                    f.writelines(line + UNIX_LINE_ENDING)
+
 if __name__ == '__main__':
     merge(filename1, filename2)
